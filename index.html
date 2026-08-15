@@ -192,10 +192,7 @@
         <div class="output-tabs-bar">
           <div class="output-tabs">
             <button class="tab-btn active" data-tab="preview">
-              <i class="fa-regular fa-eye"></i> プレビュー
-            </button>
-            <button class="tab-btn" data-tab="markdown">
-              <i class="fa-brands fa-markdown"></i> Markdown
+              <i class="fa-regular fa-eye"></i> 記事本文
             </button>
             <button class="tab-btn" data-tab="seo">
               <i class="fa-solid fa-magnifying-glass-chart"></i> タイトル & SEO
@@ -238,14 +235,9 @@
 
           <!-- Active Output Area -->
           <div id="outputContentArea" style="display: none;">
-            <!-- Tab: Visual Preview -->
+            <!-- Tab: Visual Preview (Main Article) -->
             <div id="viewPreview" class="tab-view active">
               <div id="articlePreviewBody" class="article-preview markdown-body"></div>
-            </div>
-
-            <!-- Tab: Raw Markdown -->
-            <div id="viewMarkdown" class="tab-view">
-              <textarea id="markdownRawText" readonly></textarea>
             </div>
 
             <!-- Tab: SEO & Titles -->

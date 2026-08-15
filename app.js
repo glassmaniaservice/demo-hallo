@@ -245,7 +245,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
       btn.classList.add('active');
       if (targetTab === 'preview') document.getElementById('viewPreview').classList.add('active');
-      if (targetTab === 'markdown') document.getElementById('viewMarkdown').classList.add('active');
       if (targetTab === 'seo') document.getElementById('viewSeo').classList.add('active');
     });
   });

@@ -688,44 +688,41 @@ textarea:focus, input:focus, select:focus {
   flex: 1;
   display: flex;
   flex-direction: column;
-  min-height: 480px;
+  min-height: 580px;
 }
 
-/* Enhanced Markdown Rendered Body (Maximum Readability) */
+/* Enhanced Markdown Rendered Body (Maximum Long-Read Comfort) */
 .markdown-body {
   font-size: 1.05rem;
-  line-height: 2.0;
-  letter-spacing: 0.03em;
+  line-height: 2.05;
+  letter-spacing: 0.035em;
   color: var(--text-main);
   background: var(--bg-input);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-md);
-  padding: 2rem 2.25rem;
-  max-height: 560px;
+  padding: 2.25rem 2.5rem;
+  min-height: 520px;
+  max-height: 780px;
   overflow-y: auto;
   box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.02);
   transition: font-size var(--transition-fast);
 }
 
 /* Custom Slim Scrollbar for minimal visual noise */
-.markdown-body::-webkit-scrollbar,
-#markdownRawText::-webkit-scrollbar {
+.markdown-body::-webkit-scrollbar {
   width: 6px;
 }
 
-.markdown-body::-webkit-scrollbar-track,
-#markdownRawText::-webkit-scrollbar-track {
+.markdown-body::-webkit-scrollbar-track {
   background: transparent;
 }
 
-.markdown-body::-webkit-scrollbar-thumb,
-#markdownRawText::-webkit-scrollbar-thumb {
+.markdown-body::-webkit-scrollbar-thumb {
   background: var(--border-color);
   border-radius: var(--radius-full);
 }
 
-.markdown-body::-webkit-scrollbar-thumb:hover,
-#markdownRawText::-webkit-scrollbar-thumb:hover {
+.markdown-body::-webkit-scrollbar-thumb:hover {
   background: var(--text-light);
 }
 
