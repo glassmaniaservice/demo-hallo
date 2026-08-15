@@ -48,6 +48,30 @@ document.addEventListener('DOMContentLoaded', () => {
   const toast = document.getElementById('toast');
   const toastMessage = document.getElementById('toastMessage');
 
+  // Reading Controls (Font Size & Fullscreen)
+  const fontSizeBtns = document.querySelectorAll('.btn-font-size');
+  const fullscreenPreviewBtn = document.getElementById('fullscreenPreviewBtn');
+  const outputPanel = document.querySelector('.output-panel');
+
+  fontSizeBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      fontSizeBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const size = btn.getAttribute('data-size');
+      articlePreviewBody.classList.remove('font-size-sm', 'font-size-md', 'font-size-lg');
+      articlePreviewBody.classList.add(`font-size-${size}`);
+    });
+  });
+
+  if (fullscreenPreviewBtn) {
+    fullscreenPreviewBtn.addEventListener('click', () => {
+      outputPanel.classList.toggle('fullscreen-active');
+      const isFull = outputPanel.classList.contains('fullscreen-active');
+      fullscreenPreviewBtn.innerHTML = isFull ? '<i class="fa-solid fa-compress"></i>' : '<i class="fa-solid fa-expand"></i>';
+      fullscreenPreviewBtn.title = isFull ? '縮小' : '全画面で読む';
+    });
+  }
+
   // Tone Cards
   const toneCards = document.querySelectorAll('.tone-card');
   let selectedTone = 'note';

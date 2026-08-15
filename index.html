@@ -188,17 +188,29 @@
           </div>
         </div>
 
-        <!-- Tab Controls -->
-        <div class="output-tabs">
-          <button class="tab-btn active" data-tab="preview">
-            <i class="fa-regular fa-eye"></i> プレビュー
-          </button>
-          <button class="tab-btn" data-tab="markdown">
-            <i class="fa-brands fa-markdown"></i> Markdown
-          </button>
-          <button class="tab-btn" data-tab="seo">
-            <i class="fa-solid fa-magnifying-glass-chart"></i> タイトル候補 & SEO
-          </button>
+        <!-- Tab Controls & Reading Controls -->
+        <div class="output-tabs-bar">
+          <div class="output-tabs">
+            <button class="tab-btn active" data-tab="preview">
+              <i class="fa-regular fa-eye"></i> プレビュー
+            </button>
+            <button class="tab-btn" data-tab="markdown">
+              <i class="fa-brands fa-markdown"></i> Markdown
+            </button>
+            <button class="tab-btn" data-tab="seo">
+              <i class="fa-solid fa-magnifying-glass-chart"></i> タイトル & SEO
+            </button>
+          </div>
+          <div class="reading-controls">
+            <div class="font-size-group" title="文字サイズ変更">
+              <button class="btn-font-size" data-size="sm" title="小">小</button>
+              <button class="btn-font-size active" data-size="md" title="中">中</button>
+              <button class="btn-font-size" data-size="lg" title="大">大</button>
+            </div>
+            <button id="fullscreenPreviewBtn" class="btn btn-icon btn-sm" title="全画面で読む">
+              <i class="fa-solid fa-expand"></i>
+            </button>
+          </div>
         </div>
 
         <!-- Output Views -->
