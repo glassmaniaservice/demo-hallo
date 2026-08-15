@@ -26,7 +26,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const articleCharCount = document.getElementById('articleCharCount');
   const readTime = document.getElementById('readTime');
   const articlePreviewBody = document.getElementById('articlePreviewBody');
-  const markdownRawText = document.getElementById('markdownRawText');
   const titleList = document.getElementById('titleList');
   const tagsList = document.getElementById('tagsList');
   const seoDescription = document.getElementById('seoDescription');
@@ -520,50 +519,58 @@ ${closing}
   function renderGeneratedResult(data) {
     currentGeneratedData = {
       ...data,
-      html: marked.parse(data.markdown)
+      html: typeof marked !== 'undefined' ? marked.parse(data.markdown) : data.markdown
     };
 
     // Render Preview
-    articlePreviewBody.innerHTML = currentGeneratedData.html;
-    markdownRawText.value = currentGeneratedData.markdown;
+    if (articlePreviewBody) {
+      articlePreviewBody.innerHTML = currentGeneratedData.html;
+    }
 
     // Render Stats
-    const charLen = currentGeneratedData.markdown.replace(/[#*\n\-\s]/g, '').length;
-    articleCharCount.textContent = charLen.toLocaleString();
-    readTime.textContent = Math.max(1, Math.ceil(charLen / 500));
-    outputStats.style.display = 'flex';
+    const cleanContent = (currentGeneratedData.markdown || '').replace(/[#*\n\-\s]/g, '');
+    const charLen = cleanContent.length;
+    if (articleCharCount) articleCharCount.textContent = charLen.toLocaleString();
+    if (readTime) readTime.textContent = Math.max(1, Math.ceil(charLen / 500));
+    if (outputStats) outputStats.style.display = 'flex';
 
     // Render Titles
-    titleList.innerHTML = '';
-    const allTitles = [data.title, ...(data.alternativeTitles || [])];
-    allTitles.forEach(t => {
-      if (!t) return;
-      const div = document.createElement('div');
-      div.className = 'title-item';
-      div.innerHTML = `<span>${escapeHtml(t)}</span> <i class="fa-regular fa-copy"></i>`;
-      div.addEventListener('click', () => {
-        navigator.clipboard.writeText(t);
-        showToast(`タイトルをコピー: 「${t}」`);
+    if (titleList) {
+      titleList.innerHTML = '';
+      const allTitles = [data.title, ...(data.alternativeTitles || [])];
+      allTitles.forEach(t => {
+        if (!t) return;
+        const div = document.createElement('div');
+        div.className = 'title-item';
+        div.innerHTML = `<span>${escapeHtml(t)}</span> <i class="fa-regular fa-copy"></i>`;
+        div.addEventListener('click', () => {
+          navigator.clipboard.writeText(t);
+          showToast(`タイトルをコピー: 「${t}」`);
+        });
+        titleList.appendChild(div);
       });
-      titleList.appendChild(div);
-    });
+    }
 
     // Render Tags
-    tagsList.innerHTML = '';
-    (data.tags || []).forEach(tag => {
-      const span = document.createElement('span');
-      span.className = 'tag-pill';
-      span.textContent = `#${tag}`;
-      tagsList.appendChild(span);
-    });
+    if (tagsList) {
+      tagsList.innerHTML = '';
+      (data.tags || []).forEach(tag => {
+        const span = document.createElement('span');
+        span.className = 'tag-pill';
+        span.textContent = `#${tag}`;
+        tagsList.appendChild(span);
+      });
+    }
 
     // Render SEO Desc
-    seoDescription.textContent = data.seoDesc || '（ディスクリプションなし）';
+    if (seoDescription) {
+      seoDescription.textContent = data.seoDesc || '（ディスクリプションなし）';
+    }
 
     // Show result views
-    outputLoadingState.style.display = 'none';
-    outputContentArea.style.display = 'block';
-    outputActionsBar.style.display = 'flex';
+    if (outputLoadingState) outputLoadingState.style.display = 'none';
+    if (outputContentArea) outputContentArea.style.display = 'block';
+    if (outputActionsBar) outputActionsBar.style.display = 'flex';
   }
 
   // -------------------------------------------------------------
